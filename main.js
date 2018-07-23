@@ -3,35 +3,41 @@ const language = /\/(ru|uk)\/novostroyki/;
 // 2
 const region = /(?:(?:-)(vinnitskaya|zhitomirskaya|ternopolskaya|khmelnitskaya|lvovskaya|chernigovskaya|kharkovskaya|sumskaya|rovenskaya|kiyevskaya|dnepropetrovskaya|odesskaya|zaporozhskaya|ivano-frankovskaya|kirovogradskaya|volynskaya|nikolayevskaya|poltavskaya|zakarpatskaya|khersonskaya|cherkasskaya|chernovitskaya|donetskaya|luganskaya)(?:-oblast))?/;
 //3
-const city = /(?:(?:-)(kiev|kharkiv|odessa|dnipro|donetsk|zaporizhia|lviv|kryvyi-rih|mykolaiv|mariupol|luhansk|vinnytsia|makiivka|sevastopol|simferopol|kherson|poltava|chernihiv|cherkasy|zhytomyr|sumy|khmelnytskyi|chernivtsi|horlivka|rivne|kamianske|kropyvnytskyi|ivano-frankivsk|kremenchuk|ternopil|lutsk|bila-tserkva|kramatorsk|melitopol|kerch|nikopol|sloviansk|uzhhorod|berdiansk|alchevsk|pavlohrad|sieverodonetsk|yevpatoria|lysychansk|kamianets-podilskyi|brovary|konotop|uman|mukachevo|oleksandriia|khrustalnyi|yenakiieve|shostka|berdychiv|yalta|bakhmut|kadiyivka|drohobych|kostiantynivka|nizhyn|izmail|novomoskovsk|feodosiya|kovel|smila|chervonohrad|kalush|pervomaisk|korosten|dovzhansk|pokrovsk|kolomyia|boryspil|rubizhne|chornomorsk|stryi|druzhkivka|khartsyzk|pryluky|lozova|chystiakove|novohrad-volynskyi|enerhodar|antratsyt|novovolynsk|horishni-plavni|izium|shakhtarsk|bilhorod-dnistrovskyi|myrnohrad|okhtyrka|marhanets|fastiv|snizhne|nova-kakhovka|lubny|rovenky|zhovti-vody|brianka|svitlovodsk|irpin|sorokyne|shepetivka|romny|varash|pokrov|myrhorod|podilsk))?/;
+const noCity = /(?!rayon|metro|levyy|pravyy|vozle|ulitsa|odnokomnatnyye|dvukhkomnatnyye|trekhkomnatnyye|chetyrekhkomnatnyye|sdannyye|stroyashchiyesya|ekonom-klassa|standart|biznes-klassa|elit-klassa|dachnyy|komfort-klassa|premium|kvartiry|kottedzhi|taunkhausy|pomeshcheniya|rassrochka|s-remontom|-)/;
+const city = new RegExp('(?:(?:-)(' + noCity.source +  '[a-z]+-?' +  noCity.source +  '[a-z]+)?)?');
 //4
-const area = /(?:(?:rayon-)([a-z]+))?/;
+const noArea = /(?!metro|levyy|pravyy|vozle|ulitsa|odnokomnatnyye|dvukhkomnatnyye|trekhkomnatnyye|chetyrekhkomnatnyye|sdannyye|stroyashchiyesya|ekonom-klassa|standart|biznes-klassa|elit-klassa|dachnyy|komfort-klassa|premium|kvartiry|kottedzhi|taunkhausy|pomeshcheniya|rassrochka|s-remontom|-)/;
+const area = new RegExp('(?:(?:rayon-)(' + noArea.source +  '[a-z]+-?' +  noArea.source +  '[a-z]+)?)?');
 //5
-const metro = /(?:(?:metro-)([a-z]+))?/;
+const noMetro = /(?!levyy|pravyy|vozle|ulitsa|odnokomnatnyye|dvukhkomnatnyye|trekhkomnatnyye|chetyrekhkomnatnyye|sdannyye|stroyashchiyesya|ekonom-klassa|standart|biznes-klassa|elit-klassa|dachnyy|komfort-klassa|premium|kvartiry|kottedzhi|taunkhausy|pomeshcheniya|rassrochka|s-remontom|-)/;
+const metro = new RegExp ('(?:(?:metro-)(' + noMetro.source +  '[a-z]+-?' +  noMetro.source +  '[a-z]+)?)?');
 //6
 const shore = /(levyy-bereg|pravyy-bereg)?/;
 //7
 const neatMetro = /(vozle-metro)?/;
 //8
-const street = /(?:(?:ulitsa-)([a-z]+))?/;
+const noStreet = /(?!odnokomnatnyye|dvukhkomnatnyye|trekhkomnatnyye|chetyrekhkomnatnyye|sdannyye|stroyashchiyesya|ekonom-klassa|standart|biznes-klassa|elit-klassa|dachnyy|komfort-klassa|premium|kvartiry|kottedzhi|taunkhausy|pomeshcheniya|rassrochka|s-remontom|-)/;
+const street = new RegExp ('(?:(?:ulitsa-)(' + noStreet.source +  '[a-z]+-?' +  noStreet.source +  '[a-z]+)?)?');
 // 9
-const roomCount = /(?:(?:-)(odnokomnatnyye|dvukhkomnatnyye|trekhkomnatnyye|chetyrekhkomnatnyye))?/;
+const roomCount = /(?:(?:-?)(odnokomnatnyye|dvukhkomnatnyye|trekhkomnatnyye|chetyrekhkomnatnyye))?/;
 // 10
-const exploitation = /(?:(?:-)(sdannyye))?/;
+const exploitation = /(?:(?:-?)(sdannyye))?/;
 // 11
-const build = /(?:(?:-)(stroyashchiyesya))?/;
+const build = /(?:(?:-?)(stroyashchiyesya))?/;
 // 12
-const objectClass = /(?:(?:-)(ekonom-klassa|standart|biznes-klassa|elit-klassa|dachnyy|komfort-klassa|premium))?/;
+const objectClass = /(?:(?:-?)(ekonom-klassa|standart|biznes-klassa|elit-klassa|dachnyy|komfort-klassa|premium))?/;
 // 13
-const objectType = /(?:(?:-)(kvartiry|kottedzhi|taunkhausy|pomeshcheniya))?/;
+const objectType = /(?:(?:-?)(kvartiry|kottedzhi|taunkhausy|pomeshcheniya))?/;
 // 14
-const installmentPlan = /(?:(?:-)(rassrochka))?/;
+const installmentPlan = /(?:(?:-?)(rassrochka))?/;
 // 15
-const repair = /(?:(?:-)(s-remontom))?/;
+const repair = /(?:(?:-?)(s-remontom))?/;
 
 
 const finalRegExp = new RegExp(language.source + region.source + city.source + '(?:-)?(?:' + area.source + '|'
     + metro.source + '|' + shore.source + '|' + neatMetro.source + '|' + street.source + ')' + '?' + roomCount.source
     + exploitation.source + build.source + objectClass.source + objectType.source + installmentPlan.source + repair.source);
 
-console.log(finalRegExp.exec('/uk/novostroyki-kiev-rayon-goloseevskii-kvartiry'));
+console.log(finalRegExp.exec('/uk/novostroyki-kiyevskaya-oblast-kiev-odnokomnatnyye-taunkhausy-ekonom-klassa'));
+
+
