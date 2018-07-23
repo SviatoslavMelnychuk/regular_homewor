@@ -35,7 +35,8 @@ const repair = /(?:(?:-?)(s-remontom))?/;
 
 
 const finalRegExp = new RegExp(language.source + region.source + city.source + '(?:-)?(?:' + area.source + '|'
-    + metro.source + '|' + shore.source + '|' + neatMetro.source + '|' + street.source + ')' + '?' + exploitation.source + build.source + objectType.source + objectClass.source + roomCount.source + installmentPlan.source + repair.source);
+    + metro.source + '|' + shore.source + '|' + neatMetro.source + '|' + street.source + ')' + '?' + exploitation.source
+    + build.source + objectType.source + objectClass.source + roomCount.source + installmentPlan.source + repair.source);
 
 console.log(finalRegExp.exec('/ru/novostroyki-kiyevskaya-oblast-kiev-rayon-goloseevskii'));
 
